@@ -96,7 +96,7 @@ export default function MyClassesPage() {
   return (
     <div className="space-y-8 pb-10">
       {/* Top Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 p-8 text-white shadow-xl shadow-purple-500/10">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-purple-600 via-indigo-700 to-blue-600 p-8 text-white shadow-xl shadow-purple-500/10">
         <div className="relative z-10 max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold mb-4">
             <Sparkles className="w-3.5 h-3.5" />
@@ -137,7 +137,7 @@ export default function MyClassesPage() {
               onClick={() => setFilterStatus(status)}
               className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${
                 filterStatus === status
-                  ? "bg-purple-600 text-white shadow-md shadow-purple-600/20"
+                  ? "bg-purple-800 text-white shadow-md shadow-purple-600/20"
                   : "bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800"
               }`}
             >
