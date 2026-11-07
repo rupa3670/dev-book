@@ -4,7 +4,7 @@ import "./globals.css";
 import DashboardSidebar from "@/Components/DashboardSidebar";
 import DashboardFooter from "@/Components/DashboardFooter";
 import DashboardNavbar from "@/Components/DashboardNavbar";
-
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,11 +34,11 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-white dark:bg-black text-black dark:text-white transition-colors">
         <div className="flex w-full min-h-screen overflow-x-hidden">
           {/* Dashboard Sidebar */}
-          <DashboardSidebar/>
+          <DashboardSidebar />
 
           <div className="flex flex-col w-full min-h-screen min-w-0">
             {/* Dashboard Navbar */}
-            <DashboardNavbar/>
+            <DashboardNavbar />
 
             {/* Dynamic Content (app/page.tsx etc.) */}
             <main className="flex-1 w-full p-4 md:p-6">
@@ -46,7 +46,9 @@ export default function RootLayout({
             </main>
 
             {/* Dashboard Footer */}
-            <DashboardFooter/>
+            <Suspense fallback={<div className="h-12 w-full" />}>
+              <DashboardFooter />
+            </Suspense>
           </div>
         </div>
       </body>
