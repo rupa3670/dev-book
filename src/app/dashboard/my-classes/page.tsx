@@ -8,9 +8,9 @@ import {
   PlayCircle, 
   CheckCircle2, 
   Search, 
-  Filter, 
   Sparkles,
-  ArrowRight
+  Layers,
+  GraduationCap
 } from "lucide-react";
 
 interface Course {
@@ -24,7 +24,7 @@ interface Course {
   duration: string;
   studentsCount: number;
   status: "In Progress" | "Completed";
-  imageGradient: string;
+  accentColor: string;
 }
 
 const courses: Course[] = [
@@ -39,7 +39,7 @@ const courses: Course[] = [
     duration: "12 Weeks",
     studentsCount: 1420,
     status: "In Progress",
-    imageGradient: "from-purple-600 to-indigo-500",
+    accentColor: "from-purple-500 to-indigo-600",
   },
   {
     id: "2",
@@ -52,7 +52,7 @@ const courses: Course[] = [
     duration: "8 Weeks",
     studentsCount: 980,
     status: "In Progress",
-    imageGradient: "from-blue-600 to-cyan-500",
+    accentColor: "from-blue-500 to-cyan-600",
   },
   {
     id: "3",
@@ -65,7 +65,7 @@ const courses: Course[] = [
     duration: "6 Weeks",
     studentsCount: 1150,
     status: "Completed",
-    imageGradient: "from-emerald-600 to-teal-500",
+    accentColor: "from-emerald-500 to-teal-600",
   },
   {
     id: "4",
@@ -78,7 +78,7 @@ const courses: Course[] = [
     duration: "5 Weeks",
     studentsCount: 740,
     status: "In Progress",
-    imageGradient: "from-orange-600 to-amber-500",
+    accentColor: "from-orange-500 to-amber-600",
   },
 ];
 
@@ -94,26 +94,38 @@ export default function MyClassesPage() {
   });
 
   return (
-    <div className="space-y-8 pb-10">
-      {/* Top Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-purple-600 via-indigo-700 to-blue-600 p-8 text-white shadow-xl shadow-purple-500/10">
-        <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Student Learning Hub</span>
+    <div className="space-y-8 pb-12">
+      {/* Redesigned Hero Header */}
+      <div className="relative overflow-hidden rounded-3xl bg-zinc-900 border border-zinc-800 p-8 text-white shadow-2xl">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 via-indigo-900/10 to-transparent pointer-events-none" />
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold mb-4 backdrop-blur-md">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Semester Dashboard</span>
+            </div>
+            <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+              My Enrolled Classes
+            </h1>
+            <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
+              Manage your active coursework, monitor lecture completions, and pick up right where you left off.
+            </p>
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
-            My Enrolled Classes
-          </h1>
-          <p className="mt-2 text-sm text-purple-100 leading-relaxed">
-            Track your semester courses, monitor progress across lectures, and jump right back into your active coding sessions.
-          </p>
+
+          {/* Quick Stats Pill */}
+          <div className="flex items-center gap-4 bg-zinc-800/60 border border-zinc-700/50 p-4 rounded-2xl backdrop-blur-md">
+            <div className="p-3 rounded-xl bg-purple-600/20 text-purple-400">
+              <GraduationCap className="w-6 h-6" />
+            </div>
+            <div>
+              <span className="text-2xl font-bold text-white">{courses.length}</span>
+              <p className="text-xs text-zinc-400 font-medium">Active Courses</p>
+            </div>
+          </div>
         </div>
-        {/* Decorative background element */}
-        <div className="absolute right-0 top-0 -mt-10 -mr-10 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none" />
       </div>
 
-      {/* Controls Bar: Search & Filter Tabs */}
+      {/* Controls Bar */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* Search Input */}
         <div className="relative w-full sm:w-80">
@@ -129,7 +141,7 @@ export default function MyClassesPage() {
           />
         </div>
 
-        {/* Filter Buttons */}
+        {/* Filter Tabs */}
         <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
           {(["All", "In Progress", "Completed"] as const).map((status) => (
             <button
@@ -137,7 +149,7 @@ export default function MyClassesPage() {
               onClick={() => setFilterStatus(status)}
               className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${
                 filterStatus === status
-                  ? "bg-purple-800 text-white shadow-md shadow-purple-600/20"
+                  ? "bg-purple-600 text-white shadow-md shadow-purple-600/25"
                   : "bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800"
               }`}
             >
@@ -147,17 +159,18 @@ export default function MyClassesPage() {
         </div>
       </div>
 
-      {/* Courses Grid */}
+      {/* Modern Course Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {filteredCourses.map((course) => (
           <div
             key={course.id}
-            className="group relative flex flex-col justify-between rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 shadow-sm hover:shadow-xl hover:border-purple-500/30 dark:hover:border-purple-500/30 transition-all duration-300"
+            className="group relative flex flex-col justify-between rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 shadow-sm hover:shadow-xl hover:border-purple-500/40 dark:hover:border-purple-500/40 transition-all duration-300"
           >
             <div>
-              {/* Card Header */}
+              {/* Card Top Meta */}
               <div className="flex items-center justify-between gap-4 mb-4">
-                <span className="px-3 py-1 rounded-xl bg-purple-50 dark:bg-purple-950/50 text-purple-600 dark:text-purple-400 text-xs font-bold tracking-wide">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs font-semibold">
+                  <Layers className="w-3.5 h-3.5 text-purple-500" />
                   {course.category}
                 </span>
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium ${
@@ -174,7 +187,7 @@ export default function MyClassesPage() {
                 </span>
               </div>
 
-              {/* Title & Instructor */}
+              {/* Course Title & Instructor */}
               <h3 className="text-lg font-bold text-zinc-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                 {course.title}
               </h3>
@@ -182,35 +195,35 @@ export default function MyClassesPage() {
                 Instructor: <span className="text-zinc-700 dark:text-zinc-300">{course.instructor}</span>
               </p>
 
-              {/* Progress Bar */}
+              {/* Progress Section */}
               <div className="mt-6 space-y-2">
                 <div className="flex items-center justify-between text-xs font-semibold">
-                  <span className="text-zinc-500 dark:text-zinc-400">Course Progress</span>
+                  <span className="text-zinc-500 dark:text-zinc-400">Progress</span>
                   <span className="text-zinc-900 dark:text-zinc-100">{course.progress}%</span>
                 </div>
                 <div className="w-full h-2 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
                   <div
-                    className={`h-full bg-gradient-to-r ${course.imageGradient} transition-all duration-500 rounded-full`}
+                    className={`h-full bg-gradient-to-r ${course.accentColor} transition-all duration-500 rounded-full`}
                     style={{ width: `${course.progress}%` }}
                   />
                 </div>
-                <div className="flex items-center justify-between text-[11px] text-zinc-400 pt-1">
-                  <span>{course.completedLectures} of {course.totalLectures} lectures completed</span>
+                <div className="flex items-center justify-between text-[11px] text-zinc-400 pt-0.5">
+                  <span>{course.completedLectures}/{course.totalLectures} lectures completed</span>
                   <span>{course.duration}</span>
                 </div>
               </div>
             </div>
 
-            {/* Card Footer: Meta & Action Button */}
+            {/* Card Footer */}
             <div className="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
-              <div className="flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400">
-                <Users className="w-4 h-4" />
-                <span>{course.studentsCount} enrolled</span>
+              <div className="flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400 font-medium">
+                <Users className="w-4 h-4 text-purple-500" />
+                <span>{course.studentsCount} students</span>
               </div>
 
               <button
                 type="button"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 dark:bg-zinc-800 text-white hover:bg-purple-600 dark:hover:bg-purple-600 text-xs font-semibold transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold transition-all shadow-md shadow-purple-600/20"
               >
                 <PlayCircle className="w-4 h-4" />
                 <span>Continue</span>
