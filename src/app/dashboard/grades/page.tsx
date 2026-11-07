@@ -89,28 +89,25 @@ export default function MyGradesPage() {
         return matchesSearch && matchesSemester;
     });
 
-    return (
-        <div className="space-y-8 pb-12">
-            {/* Top Banner & GPA Summary */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Hero Section */}
-                <div className="lg:col-span-2 relative overflow-hidden rounded-3xl bg-zinc-900 border border-zinc-800 p-8 text-white shadow-2xl flex flex-col justify-between">
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 via-indigo-900/10 to-transparent pointer-events-none" />
-                    <div className="relative z-10">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold mb-4 backdrop-blur-md">
-                            <Sparkles className="w-3.5 h-3.5" />
-                            <span>Academic Performance</span>
-                        </div>
-                        <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
-                            My Grades & Transcript
-                        </h1>
-                        <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
-                            My Semester Grade Report (Developer A Version)
-                        </h1>
-                        <p className="mt-2 text-sm text-zinc-400 leading-relaxed max-w-xl">
-                            Review your semester-wise academic standing, credit completions, and cumulative grade point averages in Computer Science & Engineering.
-                        </p>
-                    </div>
+  return (
+    <div className="space-y-8 pb-12">
+      {/* Top Banner & GPA Summary */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Hero Section */}
+        <div className="lg:col-span-2 relative overflow-hidden rounded-3xl bg-zinc-900 border border-zinc-800 p-8 text-white shadow-2xl flex flex-col justify-between">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 via-indigo-900/10 to-transparent pointer-events-none" />
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold mb-4 backdrop-blur-md">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Academic Performance</span>
+            </div>
+            <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+              My Grades & Transcript
+            </h1>
+            <p className="mt-2 text-sm text-zinc-400 leading-relaxed max-w-xl">
+              Review your semester-wise academic standing, credit completions, and cumulative grade point averages in Computer Science & Engineering.
+            </p>
+          </div>
 
                     <div className="relative z-10 mt-8 flex flex-wrap items-center gap-6 pt-6 border-t border-zinc-800/80">
                         <div>
