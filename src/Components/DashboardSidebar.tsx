@@ -20,9 +20,9 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Dashboard", href: "/", icon: <LayoutDashboard className="w-5 h-5" /> },
-  { label: "My Classes", href: "dashboard/classes", icon: <BookOpen className="w-5 h-5" /> },
-  { label: "My Grades", href: "dashboard/grades", icon: <GraduationCap className="w-5 h-5" /> },
-  { label: "Schedule", href: "/schedule", icon: <Calendar className="w-5 h-5" /> },
+  { label: "My Classes", href: "/dashboard/my-classes", icon: <BookOpen className="w-5 h-5" /> },
+  { label: "My Grades", href: "/dashboard/grades", icon: <GraduationCap className="w-5 h-5" /> },
+  { label: "Schedule", href: "/dashboard/schedule", icon: <Calendar className="w-5 h-5" /> },
   { label: "Messages", href: "/messages", icon: <MessageSquare className="w-5 h-5" /> },
   { label: "Settings", href: "/settings", icon: <Settings className="w-5 h-5" /> },
 ];
