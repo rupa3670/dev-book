@@ -1,6 +1,4 @@
-"use client";
 
-import { useState } from "react";
 import {
     Calendar as CalendarIcon,
     Clock,
@@ -263,5 +261,5 @@ export default function SchedulePage() {
                 )}
             </div>
         </div>
-    );
+    ); main
 }
